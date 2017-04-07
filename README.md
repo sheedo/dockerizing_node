@@ -42,6 +42,13 @@ VBoxManage controlvm boot2docker-vm natpf1 "node-port,tcp,127.0.0.1,8080,,8080"
 curl http://localhost:8080/hello
 curl http://127.0.0.1:8080/hello
 ```
+**NOTE:** If you are using Docker Toolbox on Windows, Linux or OSX you need to use the IP address of the VM
+and not localhost. When you expose a containers port it's only being exposed to the Linux VM and not your the
+Host OS, so you need to connect to the IP of the VM to communicate with the server inside the container. If 
+VBoxManage is installed on the host you can foward the Linux VM port to the host.
+```engine='sh'
+curl http://$(docker-machine ip default):8080/hello
+```
 6. If everything is successful then the result should be
 ```engine='sh'
 Hello cda5570
