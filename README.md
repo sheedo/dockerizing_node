@@ -33,6 +33,10 @@ running inside the docker container
 ```engine='sh'
 docker run -p 8080:8080 -td assignment/node-web-server
 ```
+**NOTE:** If you are using Boot2Docker the port (8080) will only be exposed to the virtual machine running inside virtual box not to the Host. You have have to forward the port from Virtualbox to your host.
+```engine='sh'
+VBoxManage controlvm boot2docker-vm natpf1 "node-port,tcp,127.0.0.1,8080,,8080"
+```
 5. Perform an HTTP GET request using curl on any of these routes to access the web server
 ```engine='sh'
 curl http://localhost:8080/hello
